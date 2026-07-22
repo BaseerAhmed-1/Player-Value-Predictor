@@ -2,7 +2,7 @@
 
 A machine learning project that predicts a football player's market value based on their attributes (age, reactions, composure, ball control, dribbling), paired with a full-stack web app for interactive predictions.
 
-Originally built as an AI course PBL project, later rebuilt into a complete, deployable application with a Flask API backend and a custom HTML/CSS/JS frontend.
+Originally built as an AI project, later rebuilt into a complete, deployable application with a Flask API backend and a custom HTML/CSS/JS frontend.
 
 ---
 
@@ -44,7 +44,7 @@ Feature importance showed **`reactions`** as by far the strongest predictor of a
 
 ```
 player-value-predictor/
-├── PlayerStats_PBL.ipynb     # Original data analysis & model training notebook
+├── PlayerStats.ipynb     # Original data analysis & model training notebook
 ├── webapp/
 │   ├── server.py             # Flask backend + API endpoints
 │   ├── templates/
@@ -88,7 +88,7 @@ python server.py
 Open `http://127.0.0.1:5000` in your browser.
 
 ### 6. (Optional) Explore the notebook
-Open `PlayerStats_PBL.ipynb` in VS Code or Jupyter to see the full data analysis and model comparison.
+Open `PlayerStats.ipynb` in VS Code or Jupyter to see the full data analysis and model comparison.
 
 ---
 
