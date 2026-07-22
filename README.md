@@ -94,7 +94,14 @@ Open `PlayerStats.ipynb` in VS Code or Jupyter to see the full data analysis and
 
 ## 📸 Screenshots
 
-*(add screenshots of the Predict, Compare, and Leaderboard tabs here)*
+### Predict
+![Predict Tab](screenshots/predict.png)
+
+### Compare Players
+![Compare Tab](screenshots/compare.png)
+
+### Leaderboard
+![Leaderboard Tab](screenshots/leaderboard.png)
 
 ---
 
