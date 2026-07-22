@@ -1,0 +1,200 @@
+/* ============================================================
+   PLAYER VALUE INDEX — Broadcast Graphics Design System
+   Inspired by live sports broadcast score-bugs and lower-thirds.
+   ============================================================ */
+
+:root {
+  --bg:        #0a121d;
+  --panel:     #101c2c;
+  --panel-alt: #142640;
+  --border:    #223349;
+  --text:      #eef2f6;
+  --text-mute: #7e8fa3;
+  --amber:     #ffb400;
+  --amber-dim: #7a5c12;
+  --cyan:      #4cc9f0;
+  --red:       #ff5d5d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #12233a 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0 20px 60px;
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ---------------- Broadcast header bar ---------------- */
+.broadcast-bar {
+  position: relative;
+  margin: 0 -20px 0;
+  padding: 34px 20px 46px;
+  background: linear-gradient(115deg, var(--panel) 0%, var(--panel) 62%, var(--amber-dim) 62%, var(--amber-dim) 63%, var(--panel) 63%);
+  border-bottom: 3px solid var(--amber);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+.broadcast-bar-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+
+.eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--amber);
+  border: 1px solid var(--amber-dim);
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+
+.broadcast-bar h1 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 2.6rem;
+  letter-spacing: 0.03em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.subtitle { color: var(--text-mute); margin-top: 10px; font-size: 0.92rem; }
+
+/* ---------------- Tabs (channel-selector chips) ---------------- */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin: 30px 0 26px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-btn {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: none;
+  color: var(--text-mute);
+  padding: 12px 20px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.15s;
+}
+.tab-btn:first-child { border-left: 1px solid var(--border); }
+
+.tab-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--amber-dim);
+}
+
+.tab-btn:hover { color: var(--text); background: var(--panel-alt); }
+.tab-btn.active { background: var(--amber); color: #101c2c; font-weight: 600; }
+.tab-btn.active .tab-num { color: #101c2c; }
+
+/* ---------------- Layout ---------------- */
+.tab-content { display: none; max-width: 1000px; margin: 0 auto; }
+.tab-content.active { display: block; animation: fadein 0.25s ease; }
+@keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--amber);
+  border-radius: 4px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.card h2 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-mute);
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---------------- Sliders ---------------- */
+.slider-row { margin-bottom: 16px; }
+.slider-row label {
+  display: flex; justify-content: space-between;
+  font-size: 0.85rem; color: var(--text-mute);
+  margin-bottom: 4px;
+}
+.slider-row label span { font-family: 'JetBrains Mono', monospace; color: var(--cyan); font-weight: 700; }
+.slider-row input[type="range"] {
+  width: 100%;
+  accent-color: var(--amber);
+  height: 4px;
+}
+
+/* ---------------- Scoreboard result box ---------------- */
+.result-box {
+  margin-top: 20px;
+  position: relative;
+  background: var(--panel-alt);
+  border: 1px solid var(--amber-dim);
+  padding: 18px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+.result-box::before {
+  content: "";
+  position: absolute; top: 0; left: 0; height: 100%; width: 6px;
+  background: repeating-linear-gradient(45deg, var(--amber), var(--amber) 4px, transparent 4px, transparent 8px);
+}
+.result-label {
+  display: block; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.1em; color: var(--text-mute); text-transform: uppercase;
+}
+.result-value {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2rem; font-weight: 700; color: var(--amber);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* ---------------- Select ---------------- */
+.select-label { display: block; margin: 16px 0; color: var(--text-mute); font-size: 0.9rem; }
+.select-label select {
+  margin-left: 10px;
+  background: var(--panel-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 7px 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ---------------- Table ---------------- */
+table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+th {
+  color: var(--amber); font-weight: 600; font-family: 'Oswald', sans-serif;
+  text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em;
+}
+td.mono, td:last-child { font-family: 'JetBrains Mono', monospace; color: var(--cyan); }
+tbody tr:hover { background: var(--panel-alt); }
+
+canvas { margin-top: 10px; }

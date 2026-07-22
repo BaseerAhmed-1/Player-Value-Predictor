@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Player Value Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="broadcast-bar">
+  <div class="broadcast-bar-inner">
+    <span class="eyebrow">SCOUTING REPORT · LIVE MODEL</span>
+    <h1>PLAYER VALUE INDEX</h1>
+    <p class="subtitle">Random Forest Regression &nbsp;·&nbsp; R² <span class="mono">{{ r2 }}</span> &nbsp;·&nbsp; <span class="mono">{{ count }}</span> players analysed</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="predict"><span class="tab-num">01</span>Predict</button>
+  <button class="tab-btn" data-tab="compare"><span class="tab-num">02</span>Compare</button>
+  <button class="tab-btn" data-tab="whatif"><span class="tab-num">03</span>What-If</button>
+  <button class="tab-btn" data-tab="similar"><span class="tab-num">04</span>Similar</button>
+  <button class="tab-btn" data-tab="leaderboard"><span class="tab-num">05</span>Leaderboard</button>
+</nav>
+
+<!-- PREDICT TAB -->
+<section id="predict" class="tab-content active">
+  <div class="grid-2">
+    <div class="card">
+      <h2>Player Attributes</h2>
+      <div class="slider-group" id="predict-sliders" data-prefix="p"></div>
+      <div class="result-box">
+        <span class="result-label">Predicted Market Value</span>
+        <span class="result-value" id="predict-result">—</span>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Attribute Profile</h2>
+      <canvas id="predict-radar"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TAB -->
+<section id="compare" class="tab-content">
+  <div class="grid-2">
+    <div class="card">
+      <h2>Player A</h2>
+      <div class="slider-group" id="compareA-sliders" data-prefix="a"></div>
+      <div class="result-box"><span class="result-label">Value</span><span class="result-value" id="compareA-result">—</span></div>
+    </div>
+    <div class="card">
+      <h2>Player B</h2>
+      <div class="slider-group" id="compareB-sliders" data-prefix="b"></div>
+      <div class="result-box"><span class="result-label">Value</span><span class="result-value" id="compareB-result">—</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Comparison Radar</h2>
+    <canvas id="compare-radar"></canvas>
+  </div>
+</section>
+
+<!-- WHAT-IF TAB -->
+<section id="whatif" class="tab-content">
+  <div class="card">
+    <h2>Base Attributes</h2>
+    <div class="slider-group" id="whatif-sliders" data-prefix="w"></div>
+    <label class="select-label">Vary which attribute?
+      <select id="whatif-attr">
+        <option value="reactions">Reactions</option>
+        <option value="composure">Composure</option>
+        <option value="ball_control">Ball Control</option>
+        <option value="dribbling">Dribbling</option>
+        <option value="age">Age</option>
+      </select>
+    </label>
+    <canvas id="whatif-chart"></canvas>
+  </div>
+</section>
+
+<!-- SIMILAR TAB -->
+<section id="similar" class="tab-content">
+  <div class="card">
+    <h2>Find Similar Real Players</h2>
+    <div class="slider-group" id="similar-sliders" data-prefix="s"></div>
+    <table id="similar-table">
+      <thead><tr><th>Player</th><th>Country</th><th>Value</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- LEADERBOARD TAB -->
+<section id="leaderboard" class="tab-content">
+  <div class="card">
+    <h2>Top 10 Highest-Value Players</h2>
+    <canvas id="leaderboard-chart"></canvas>
+  </div>
+  <div class="card">
+    <h2>Median Value by Age</h2>
+    <canvas id="agetrend-chart"></canvas>
+  </div>
+</section>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
